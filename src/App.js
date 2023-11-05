@@ -12,13 +12,23 @@ function App() {
   const [newDescription, setNewDescription] = useState("");
   const [allTodos, setAllTodos] = useState([]);  //[] - для данных 
 
+  const date = new Date();
+
   const addNewTask = () => {
     if (newTodoTitle.trim() !== "") {
-      const newTask = { newTodoTitle, newDescription };
+      const newTask = { 
+        title: newTodoTitle, 
+        description: newDescription,
+        id: date.getMilliseconds()
+      };
       setAllTodos([...allTodos, newTask]);
       setNewTodoTitle("");
       setNewDescription("");
     }
+  }
+
+  const deleteTask = (id) =>{
+    setAllTodos(allTodos.filter((item, index) => item.id !== id))
   }
 
   return (
@@ -45,9 +55,10 @@ function App() {
         {
           allTodos.map((item, index) => (
           <Todoitem 
-            key={index} 
-            todoTitle={item.newTodoTitle} 
-            todoDescription={item.newDescription} />
+            todoTitle={item.title} 
+            todoDescription={item.description} 
+            deleteTask={deleteTask}
+            id={item.id}/>
         ))}
 
         </div>
