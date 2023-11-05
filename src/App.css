@@ -66,6 +66,16 @@ h1{
   width: 60px;
   cursor: pointer;
 }
+.clear{
+  background-color: rgb(122, 8, 8);
+  color: white;
+  border-radius: 0px;
+  border: none;
+  margin-top: 25px;
+  padding: 10px;
+  width: 60px;
+  cursor: pointer;
+}
 
 .primary-btn:hover{
   background-color: rgb(4, 192, 104);
@@ -84,6 +94,11 @@ h1{
   padding: 10px;
   width: fit-content;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background-color: rgb(77, 77, 77);
 }
 
 .btn-area .active{
@@ -145,3 +160,32 @@ h1{
   color: rgb(4, 192, 104);
 }
 
+.clear-wrapper{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.clear-div .clear{
+  margin: 0;
+}
+
+.secondaryBtn.active {
+  background-color: rgb(0, 230, 122);
+  color: white;
+}
+
+.secondaryBtn.active {
+  background-color: rgb(0, 230, 122);
+  color: white;
+}
+
+
+.delete-icon {
+  font-size: 32px;
+  cursor: pointer;
+  color: red; 
+  margin-left: 10px;
+}
+.delete-icon:hover {
+  color: darkred;
+}

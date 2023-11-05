@@ -1,10 +1,20 @@
 import React from "react";
 
-const Switcher = () => {
+const Switcher = ({ switchToTodo, switchToCompleted, viewMode }) => {
     return (
         <div className="btn-area">
-            <button className="secondaryBtn">To Do</button>
-            <button className="secondaryBtn">Completed</button>
+            <button
+                className={`secondaryBtn ${viewMode === "todo" ? "active" : ""}`}
+                onClick={switchToTodo}
+            >
+                To Do
+            </button>
+            <button
+                className={`secondaryBtn ${viewMode === "completed" ? "active" : ""}`}
+                onClick={switchToCompleted}
+            >
+                Completed
+            </button>
         </div>
     );
 };
