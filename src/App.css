@@ -153,7 +153,7 @@ h1{
   cursor: pointer;
   color: rgb(0, 230, 122);
   margin-left: 10px;
-  margin-bottom: 5px;
+  margin-top: 3px;
 }
 
 .check-icon:hover{
@@ -188,4 +188,22 @@ h1{
 }
 .delete-icon:hover {
   color: darkred;
+}
+
+.icon-Edit{
+  transform: translate(16px, 20px);
+}
+.icon-Edit:hover{
+  color: #585858;
+}
+
+.save-icon{
+  font-size: 23px;
+}
+.save-icon:hover{
+  color: #585858;
+}
+.edit-input{
+  height: 23px;
+  width: 200px;
 }

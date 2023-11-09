@@ -13,7 +13,9 @@ function App() {
   const [newDescription, setNewDescription] = useState("");
   const [allTodos, setAllTodos] = useState([]);  //[] - для данных 
   const [viewMode, setViewMode] = useState("todo"); // статус выполнен/не выполнен
-  // const [completedTodos, setCompletedTodos] = useState([]);
+  const [editTask, setEditTask] = useState({ id: null, text: "" });
+  const [TaskText, setTaskText] = useState("") ;
+  const [isEditing, setIsEditing] = useState(false);
   const date = new Date();
 
   const todoTasks = allTodos.filter((task) => !task.completed);
@@ -59,10 +61,33 @@ function App() {
   
     setAllTodos(updatedTodos);
   };
+
+  const toggleEdit = (taskId, taskText) => {
+    setAllTodos((prevTodos) =>
+      prevTodos.map((task) =>
+        task.id === taskId ? { ...task, isEditing: !task.isEditing } : task
+      )
+    );
+    setEditTask((prevEditTask) =>
+      prevEditTask.id === taskId ? { id: null, text: "" } : { id: taskId, text: taskText }
+    );
+    setTaskText(taskText);
+  };  
   
+
+  const saveChange = (taskId) => {
+    setAllTodos((prevTodos) =>
+      prevTodos.map((task) =>
+        task.id === taskId
+          ? { ...task, title: TaskText, isEditing: false }
+          : task
+      )
+    );
+    setTaskText("");
+    setEditTask({ id: null, text: "" }); 
+  };  
   
-  
-  
+
 
   return (
     <div className="App">
@@ -101,6 +126,13 @@ function App() {
               id={item.id}
               taskCompleted={taskCompleted}
               completed={item.completed}
+
+              toggleEdit={() => toggleEdit(item.id, item.title)}
+              TaskText={item.id === editTask.id ? editTask.text : ""}
+              setTaskText={setTaskText}
+              saveChange={() => saveChange(item.id)}
+              editTask={item.id === editTask.id}
+              isEditing={editTask.id === item.id}
               />
             ))
           ) : (
@@ -112,6 +144,13 @@ function App() {
               id={item.id}
               taskCompleted={taskCompleted}
               completed={item.completed}
+
+              toggleEdit={() => toggleEdit(item.id, item.title)}
+              TaskText={item.id === editTask.id ? editTask.text : ""}
+              setTaskText={setTaskText}
+              saveChange={() => saveChange(item.id)}
+              editTask={item.id === editTask.id}
+              isEditing={editTask.id === item.id}
               />
             ))
           )}
